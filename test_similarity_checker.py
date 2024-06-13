@@ -10,6 +10,10 @@ class SimilarityCheckerTestCase(unittest.TestCase):
         score = checker.check_letters()
         self.assertEqual(score, 60.0)
 
+        checker.set_strings("A", "BB")
+        score = checker.check_letters()
+        self.assertEqual(score, 0.)
+
 
 if __name__ == "__main__":
     unittest.main()
