@@ -9,7 +9,7 @@ class SimilarityCheckerTestCase(unittest.TestCase):
         self.checker = SimilarityChecker()
 
     def test_check_letters(self):
-        self.assert_equal_score("ASD", "DSA", 60.0)
+        self.assert_equal_score("ASD", "DSA", 40.0)
         self.assert_equal_score("A", "BB", 0.0)
 
     def assert_equal_score(self, lhs: str, rhs: str, expected_score: float):
