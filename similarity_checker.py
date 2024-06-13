@@ -15,18 +15,20 @@ class SimilarityChecker:
         self.rhs = rhs
 
     def total_score(self) -> float:
-        return self.check_length() + self.check_letters()
+        return self.calculate_length_score() + self.calculate_letter_score()
 
-    def check_length(self) -> float:
+    def calculate_length_score(self) -> float:
         # TODO: Implement me
         raise NotImplementedError()
 
-    def check_letters(self) -> float:
-        if not re.match(self.UPPERCASE_PATTERN, self.lhs):
-            raise ValueError()
-        if not re.match(self.UPPERCASE_PATTERN, self.rhs):
-            raise ValueError()
+    def calculate_letter_score(self) -> float:
+        self.validate_uppercases(self.lhs)
+        self.validate_uppercases(self.rhs)
 
         if self.lhs == "A" and self.rhs == "BB":
             return 0.0
         return 40.0
+
+    def validate_uppercases(self, letters: str):
+        if not re.match(self.UPPERCASE_PATTERN, letters):
+            raise ValueError()
