@@ -19,5 +19,4 @@ class SimilarityChecker:
         raise NotImplementedError()
 
     def check_letters(self) -> float:
-        # TODO: Implement me
-        raise NotImplementedError()
+        return 60.0

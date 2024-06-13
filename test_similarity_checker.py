@@ -1,10 +1,14 @@
 import unittest
 
+from similarity_checker import SimilarityChecker
+
 
 class SimilarityCheckerTestCase(unittest.TestCase):
-    def test_something(self):
-        # TODO: Implement me
-        raise NotImplementedError()
+    def test_check_letters(self):
+        checker = SimilarityChecker()
+        checker.set_strings("ASD", "DSA")
+        score = checker.check_letters()
+        self.assertEqual(score, 60.0)
 
 
 if __name__ == "__main__":
