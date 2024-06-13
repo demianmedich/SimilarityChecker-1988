@@ -20,5 +20,5 @@ class SimilarityChecker:
 
     def check_letters(self) -> float:
         if self.lhs == "A" and self.rhs == "BB":
-            return 0.
+            return 0.0
         return 60.0
