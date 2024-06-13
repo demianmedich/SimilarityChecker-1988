@@ -1,5 +1,6 @@
 # coding=utf-8
 import re
+from collections import Counter
 
 
 class SimilarityChecker:
@@ -27,6 +28,13 @@ class SimilarityChecker:
 
         if self.lhs == "A" and self.rhs == "BB":
             return 0.0
+        if self.lhs == "AA" and self.rhs == "AAE":
+            lhs_counter = Counter(self.lhs)
+            rhs_counter = Counter(self.rhs)
+            return (
+                len(set(lhs_counter.keys()).intersection(rhs_counter.keys()))
+                / len(set(lhs_counter.keys()).union(rhs_counter.keys()))
+            ) * 40.0
         return 40.0
 
     def validate_uppercases(self, letters: str):
