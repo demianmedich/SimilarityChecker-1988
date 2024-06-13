@@ -26,16 +26,18 @@ class SimilarityChecker:
         self.validate_uppercases(self.lhs)
         self.validate_uppercases(self.rhs)
 
-        if self.lhs == "A" and self.rhs == "BB":
-            return 0.0
-        if self.lhs == "AA" and self.rhs == "AAE":
-            lhs_counter = Counter(self.lhs)
-            rhs_counter = Counter(self.rhs)
-            return (
-                len(set(lhs_counter.keys()).intersection(rhs_counter.keys()))
-                / len(set(lhs_counter.keys()).union(rhs_counter.keys()))
-            ) * 40.0
-        return 40.0
+        lhs_letter_set = self.get_letter_set(self.lhs)
+        rhs_letter_set = self.get_letter_set(self.rhs)
+        return self.formula_letter_score(lhs_letter_set, rhs_letter_set)
+
+    def formula_letter_score(self, lhs_letter_set, rhs_letter_set):
+        return (
+            len(lhs_letter_set.intersection(rhs_letter_set))
+            / len(lhs_letter_set.union(rhs_letter_set))
+        ) * 40.0
+
+    def get_letter_set(self, letters: str):
+        return set(Counter(letters).keys())
 
     def validate_uppercases(self, letters: str):
         if not re.match(self.UPPERCASE_PATTERN, letters):
