@@ -19,7 +19,7 @@ class SimilarityCheckerTestCase(unittest.TestCase):
         ]:
             with self.subTest(ValueError, lhs=lhs, rhs=rhs):
                 try:
-                    self.calculate_letter_score(lhs, rhs)
+                    self.checker.calculate_letter_score(lhs, rhs)
                     self.fail()
                 except ValueError:
                     pass
@@ -31,13 +31,8 @@ class SimilarityCheckerTestCase(unittest.TestCase):
         self.assert_equal_score("AA", "AAE", 20.0)
 
     def assert_equal_score(self, lhs: str, rhs: str, expected_score: float):
-        score = self.calculate_letter_score(lhs, rhs)
+        score = self.checker.calculate_letter_score(lhs, rhs)
         self.assertEqual(score, expected_score)
-
-    def calculate_letter_score(self, lhs, rhs):
-        self.checker.set_strings(lhs, rhs)
-        score = self.checker.calculate_letter_score()
-        return score
 
 
 if __name__ == "__main__":
